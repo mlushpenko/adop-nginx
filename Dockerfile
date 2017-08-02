@@ -17,11 +17,13 @@ RUN apt-get update \
         libldap2-dev \
         libssl-dev \
         wget \
-        jq
+        jq \
+        dos2unix
 
 # See http://wiki.nginx.org/InstallOptions
 RUN mkdir /var/log/nginx \
     && mkdir -p /etc/nginx/sites-enabled \
+    && mkdir -p /usr/share/nginx/html \
     && cd ~ \
     && git clone https://github.com/kvspb/nginx-auth-ldap.git \
     && git clone https://github.com/nginx/nginx.git \
@@ -53,5 +55,7 @@ COPY resources/release_note/ /resources/release_note/
 COPY resources/scripts/ /resources/scripts/
 COPY templates/configuration/ /templates/configuration/
 RUN chmod +x /resources/scripts/*
+# For build on windows machines
+RUN dos2unix /resources/scripts/*
 
 CMD ["/resources/scripts/entrypoint.sh"]

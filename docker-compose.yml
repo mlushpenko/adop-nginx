@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    image: 'nginx:0'
+    ports:
+    - 80:80
+    - 443:443
+    environment:
+     - LDAP_PROTOCOL=ldaps
+     - LDAP_SERVER=sr1puimnl10
+     - LDAP_USER_BASE_DN=OU=people,DC=upc,DC=biz
+     - LDAP_USER_ID_ATTRIBUTE=uid
+     - LDAP_USER_OBJECT_CLASS=*
+     - LDAP_USERNAME=""
+     - LDAP_PASSWORD=""
+     - LDAP_GROUP_ATTRIBUTE=""
