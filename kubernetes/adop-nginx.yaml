@@ -28,7 +28,7 @@ items:
           - name: LDAP_SERVER
             value: sr1puimnl10
           - name: LDAP_USER_BASE_DN
-            value: OU=people,DC=ipc,DC=biz
+            value: OU=people,DC=upc,DC=biz
           - name: LDAP_USER_ID_ATTRIBUTE
             value: uid
           - name: LDAP_USER_OBJECT_CLASS
