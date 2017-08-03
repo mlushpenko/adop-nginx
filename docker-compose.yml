@@ -1,13 +1,21 @@
 version: '3'
 services:
   nginx:
+    build: .
     image: 'nginx:0'
     ports:
-    - 80:80
-    - 443:443
+      - 80:80
+      - 443:443
     environment:
-     - LDAP_PROTOCOL=ldaps
-     - LDAP_SERVER=sr1puimnl10
-     - LDAP_USER_BASE_DN=OU=people,DC=upc,DC=biz
-     - LDAP_USER_ID_ATTRIBUTE=uid
-     - LDAP_USER_OBJECT_CLASS=*
+      - LDAP_PROTOCOL=ldaps
+      - LDAP_SERVER=sr1puimnl10
+      - LDAP_USER_BASE_DN=OU=people,DC=upc,DC=biz
+      - LDAP_USER_ID_ATTRIBUTE=uid
+      - LDAP_USER_OBJECT_CLASS=*
+    extra_hosts:
+      - "sr1puimnl10:172.16.85.45"
+    healthcheck:
+      test: ["CMD", "ping", "-c", "2", "sr1puimnl10"]
+      interval: 10s
+      timeout: 2s
+      retries: 1

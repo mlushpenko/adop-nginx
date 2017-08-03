@@ -29,5 +29,4 @@ perl -p -i -e 's/###([^#]+)###/defined $ENV{$1} ? $ENV{$1} : ""/eg' < "/template
 #   done
 # done
 
-echo '172.16.85.45 sr1puimnl10' >> /etc/hosts
 /usr/sbin/nginx
