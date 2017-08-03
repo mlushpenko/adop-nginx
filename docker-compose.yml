@@ -11,6 +11,3 @@ services:
      - LDAP_USER_BASE_DN=OU=people,DC=upc,DC=biz
      - LDAP_USER_ID_ATTRIBUTE=uid
      - LDAP_USER_OBJECT_CLASS=*
-     - LDAP_USERNAME=""
-     - LDAP_PASSWORD=""
-     - LDAP_GROUP_ATTRIBUTE=""

@@ -56,7 +56,6 @@ COPY resources/scripts/ /resources/scripts/
 COPY templates/configuration/ /templates/configuration/
 RUN chmod +x /resources/scripts/*
 # For build on windows machines
-RUN dos2unix /resources/scripts/* \
-    && echo '172.16.85.45 sr1puimnl10' >> /etc/hosts
+RUN dos2unix /resources/scripts/*
 
 CMD ["/resources/scripts/entrypoint.sh"]
