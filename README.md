@@ -26,6 +26,7 @@ The nginx configuration is externalised and stored the 'resources' directory.
 
 Runtime configuration can be provided using environment variables:
 
+* LDAP_PROTOCOL, ldap or ldaps
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
 * LDAP_USERNAME, the LDAP BASE_DN
 * LDAP_PASSWORD, the password to use connecting to LDAP service using the provided username 
@@ -33,6 +34,10 @@ Runtime configuration can be provided using environment variables:
 * LDAP_GROUP_ATTRIBUTE, LDAP object field attribute the defines group appartenence. 
 * LDAP_USER_ID_ATTRIBUTE, LDAP object field attribute the defines the user identifier. 
 * LDAP_USER_OBJECT_CLASS, LDAP user object class
+
+## External LDAP
+
+If you want to integrate with external LDAP, you may need to add custom hostname, check `extra_hosts` and `healthcheck` in `docker-compose.yml` parts to make sure you server is reachable. To achieve the same behavior in `docker run` you can use option `--add-host` and `--health-cmd`
 
 # License
 Please view [licence information](LICENCE.md) for the software contained on this image.
