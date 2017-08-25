@@ -17,11 +17,13 @@ RUN apt-get update \
         libldap2-dev \
         libssl-dev \
         wget \
-        jq
+        jq \
+        dos2unix
 
 # See http://wiki.nginx.org/InstallOptions
 RUN mkdir /var/log/nginx \
     && mkdir -p /etc/nginx/sites-enabled \
+    && mkdir -p /usr/share/nginx/html \
     && cd ~ \
     && git clone https://github.com/kvspb/nginx-auth-ldap.git \
     && git clone https://github.com/nginx/nginx.git \
@@ -53,5 +55,9 @@ COPY resources/release_note/ /resources/release_note/
 COPY resources/scripts/ /resources/scripts/
 COPY templates/configuration/ /templates/configuration/
 RUN chmod +x /resources/scripts/*
+# Fixes for builds on windows machines
+# See https://confluence.atlassian.com/kb/starting-service-on-linux-throws-a-no-such-file-or-directory-error-794203722.html
+RUN dos2unix /resources/scripts/* \
+    && sed -i -e 's/\r//g' /etc/init.d/nginx
 
 CMD ["/resources/scripts/entrypoint.sh"]

@@ -1,6 +1,10 @@
-#Supported tags and respective Dockerfile links
+# Supported tags and respective Dockerfile links
 
 - [`0.1.0`, `0.1.0` (*0.1.0/Dockerfile*)](https://github.com/Accenture/adop-nginx/blob/master/Dockerfile.md)
+
+# Build Status
+
+[![Build Status](https://travis-ci.org/Accenture/adop-nginx.svg?branch=master)](https://travis-ci.org/Accenture/adop-nginx)
 
 # What is adop-nginx?
 
@@ -26,6 +30,7 @@ The nginx configuration is externalised and stored the 'resources' directory.
 
 Runtime configuration can be provided using environment variables:
 
+* LDAP_PROTOCOL, ldap or ldaps
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
 * LDAP_USERNAME, the LDAP BASE_DN
 * LDAP_PASSWORD, the password to use connecting to LDAP service using the provided username 
@@ -37,7 +42,7 @@ Runtime configuration can be provided using environment variables:
 # License
 Please view [licence information](LICENCE.md) for the software contained on this image.
 
-#Supported Docker versions
+# Supported Docker versions
 
 This image is officially supported on Docker version 1.9.1.
 Support for older versions (down to 1.6) is provided on a best-effort basis.

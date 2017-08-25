@@ -2,13 +2,13 @@
 set -e
 
 cp -R /resources/configuration/* /etc/nginx/
-cp -R /resources/release_note/* /usr/share/nginx/html/
+mkdir -p /usr/share/nginx/html/ && cp -R /resources/release_note/* /usr/share/nginx/html/
 
 # Auto populate the release note page with the blueprints
 /resources/scripts/reload_release_notes.sh
 
 # Copy and replace tokens
-perl -p -i -e 's/###([^#]+)###/defined $ENV{$1} ? $ENV{$1} : $&/eg' < "/templates/configuration/nginx.conf" 2> /dev/null 1> "/etc/nginx/nginx.conf"
+perl -p -i -e 's/###([^#]+)###/defined $ENV{$1} ? $ENV{$1} : ""/eg' < "/templates/configuration/nginx.conf" 2> /dev/null 1> "/etc/nginx/nginx.conf"
 
 # wait for all downstream services to be up and running
 # This is a temporary solution that allows NGINX to wait for all dependencies and after start, this should be removed when 
