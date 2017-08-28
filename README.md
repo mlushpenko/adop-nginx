@@ -30,6 +30,8 @@ The nginx configuration is externalised and stored the 'resources' directory.
 
 Runtime configuration can be provided using environment variables:
 
+* NGINX_PORT, 80 or 443 (for ssl)
+* NGINX_SSL, on or off
 * LDAP_PROTOCOL, ldap or ldaps
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
 * LDAP_USERNAME, the LDAP BASE_DN
@@ -38,6 +40,31 @@ Runtime configuration can be provided using environment variables:
 * LDAP_GROUP_ATTRIBUTE, LDAP object field attribute the defines group appartenence. 
 * LDAP_USER_ID_ATTRIBUTE, LDAP object field attribute the defines the user identifier. 
 * LDAP_USER_OBJECT_CLASS, LDAP user object class
+
+## SSL configuration
+If you have certificates, set `NGINX_PORT` to `443` and `NGINX_SSL` to `on` and add your certificates to the volume under ssl directory as `host.crt` and `host.key`:
+
+```
+# Assuming host.crt and host.key are in the current working directory, perform the following steps
+$ docker volume inspect nginx_config
+[
+    {
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/u01/appl/docker/volumes/nginx_config/_data",
+        "Name": "nginx_config",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+
+$ ls "/u01/appl/docker/volumes/nginx_config/_data"
+fastcgi.conf          fastcgi_params          koi-utf  mime.types          naxsi_core.rules  naxsi-ui.conf.1.4.1  nginx.conf.default  scgi_params          sites-available  ssl           uwsgi_params.default
+fastcgi.conf.default  fastcgi_params.default  koi-win  mime.types.default  naxsi.rules       nginx.conf           proxy_params        scgi_params.default  sites-enabled    uwsgi_params  win-utf
+
+$ cp host* /u01/appl/docker/volumes/nginx_config/_data/ssl/
+$ docker restart proxy
+```
 
 # License
 Please view [licence information](LICENCE.md) for the software contained on this image.
