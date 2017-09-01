@@ -30,9 +30,9 @@ The nginx configuration is externalised and stored the 'resources' directory.
 
 Runtime configuration can be provided using environment variables:
 
-* NGINX_PORT, 80 or 443 (for ssl)
-* NGINX_SSL, on or off
-* LDAP_PROTOCOL, ldap or ldaps
+* NGINX_PORT, 80(default) or 443 (for ssl)
+* NGINX_SSL, off(default) or on
+* LDAP_PROTOCOL, ldap(default) or ldaps
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
 * LDAP_USERNAME, the LDAP BASE_DN
 * LDAP_PASSWORD, the password to use connecting to LDAP service using the provided username 

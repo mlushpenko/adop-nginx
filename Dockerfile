@@ -3,6 +3,9 @@ FROM ubuntu:14.04
 MAINTAINER Robert Northard, <robert.a.northard>
 
 ENV NGINX_VERSION 1.8.0
+ENV NGINX_SSL off
+ENV NGINX_PORT 80
+ENV LDAP_PROTOCOL ldap
 
 ############## nginx setup ##############
 
